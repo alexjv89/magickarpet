@@ -1,0 +1,508 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     20421,        499]
+NotebookOptionsPosition[     19450,        463]
+NotebookOutlinePosition[     19832,        479]
+CellTagsIndexPosition[     19789,        476]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Vs", " ", "=", " ", "36"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Ke", "=", "0.0232"}], ";"}], " ", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"volts", "/", "rad"}], "/", "sec"}], "*)"}], ";", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Kt", "=", "0.0232"}], ";", " ", 
+   RowBox[{"(*", 
+    RowBox[{"Nm", "/", "amp"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"r", "=", "6"}], ";"}], 
+  RowBox[{"(*", "ohms", "*)"}], "\[IndentingNewLine]", "*)"}]], "Input",
+ CellChangeTimes->{{3.53130796468572*^9, 3.531308071297759*^9}, {
+  3.531308365119944*^9, 3.5313083653118773`*^9}, {3.531308842071539*^9, 
+  3.5313088619348707`*^9}, {3.5313090016662407`*^9, 3.531309058051075*^9}, {
+  3.531309147471863*^9, 3.531309195703747*^9}, {3.539512689891*^9, 
+  3.539512701829*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+   RowBox[{"Dcmotor", "[", 
+    RowBox[{"v_", ",", "i_", ",", "r_", ",", "Ke_", ",", "Kt_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "\[Omega]", ",", "\[Tau]", ",", "p", ",", "imax", ",", "\[Tau]max"}], 
+      "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"\[Omega]", "=", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"v", "-", 
+          RowBox[{"i", "*", "r"}]}], ")"}], "/", "Ke"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"\[Tau]", "=", 
+       RowBox[{"Kt", "*", "i"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"p", "=", 
+       RowBox[{"\[Tau]", "*", "\[Omega]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"imax", "=", 
+       RowBox[{"v", "/", "r"}]}], ";", 
+      RowBox[{"(*", "Ma", "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"\[Tau]max", "=", 
+       RowBox[{"Kt", "*", "imax"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", 
+       RowBox[{"{", 
+        RowBox[{"\[Omega]", ",", "\[Tau]", ",", "p"}], "}"}], "]"}], ";"}]}], 
+    "\[IndentingNewLine]", "]"}]}], "*)"}]], "Input",
+ CellChangeTimes->{{3.5313082187319098`*^9, 3.5313082236572313`*^9}, {
+  3.531308304216539*^9, 3.5313085184537277`*^9}, {3.531308550027996*^9, 
+  3.531308825650085*^9}, {3.531308954381567*^9, 3.5313089923784657`*^9}, {
+  3.5313091048805437`*^9, 3.531309111272153*^9}, {3.531309965108184*^9, 
+  3.531310077373307*^9}, {3.539431493771*^9, 3.539431518928*^9}, {
+  3.539512705507*^9, 3.539512708987*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\[Omega]", ",", "\[Tau]", ",", "p"}], "}"}], "=", 
+    RowBox[{"Dcmotor", "[", 
+     RowBox[{"Vs", ",", "i", ",", "r", ",", "Ke", ",", "Kt"}], "]"}]}], ";", 
+   "\[IndentingNewLine]", 
+   RowBox[{"GraphicsRow", "[", 
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"Plot", "[", 
+       RowBox[{"\[Omega]", ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "0", ",", 
+          RowBox[{"Vs", "/", "r"}]}], "}"}], ",", 
+        RowBox[{"AxesLabel", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"\"\<current(amps)\>\"", ",", "\"\<Speed(rads/sec)\>\""}], 
+          "}"}]}]}], "]"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"Plot", "[", 
+       RowBox[{"\[Tau]", ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "0", ",", 
+          RowBox[{"Vs", "/", "r"}]}], "}"}], ",", 
+        RowBox[{"AxesLabel", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"\"\<current(amps)\>\"", ",", "\"\<Torque(Nm)\>\""}], 
+          "}"}]}]}], "]"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"Plot", "[", 
+       RowBox[{"p", ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "0", ",", 
+          RowBox[{"Vs", "/", "r"}]}], "}"}], ",", 
+        RowBox[{"AxesLabel", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"\"\<current(amps)\>\"", ",", "\"\<Power(watt)\>\""}], 
+          "}"}]}]}], "]"}]}], "\[IndentingNewLine]", "}"}], "]"}]}], 
+  "*)"}]], "Input",
+ CellChangeTimes->{{3.531308301953764*^9, 3.531308301954858*^9}, {
+  3.531309077819475*^9, 3.531309099473029*^9}, {3.5313091312402487`*^9, 
+  3.531309141184957*^9}, {3.531309172584043*^9, 3.531309172975421*^9}, {
+  3.5313092042734833`*^9, 3.531309288631998*^9}, {3.531309319236655*^9, 
+  3.531309508861395*^9}, {3.531309566182517*^9, 3.531309724037631*^9}, {
+  3.5313097717717237`*^9, 3.5313097723201303`*^9}, {3.5394315189519997`*^9, 
+  3.539431518974*^9}, {3.539494691993*^9, 3.539494712304*^9}, {
+  3.539512739109*^9, 3.5395127713120003`*^9}}],
+
+Cell[TextData[{
+ "max speed of 11m/sec or 40kmph\nAcceleration is 0-40kmph in 4 secs .. ie \
+approximately 11/4 = 2.75 ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"m", "/", 
+    SuperscriptBox["sec", "2"]}], TraditionalForm]]],
+ " say max ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"3", 
+    RowBox[{"m", "/", 
+     SuperscriptBox["sec", "2"]}]}], TraditionalForm]]],
+ ". The acceleration torque requirement is only for the accelerating the \
+board and for maintaining speed. \n\nSide ways to wind - Cd = 1.0 - 1.1\n\
+Projected area - ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"0.38", 
+    SuperscriptBox["m", "2"]}], TraditionalForm]]],
+ "\nfacing the wind - Cd = 1.2-1.3\nProjected area = 0.55\ndensity of air = \
+",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"1.2", 
+    RowBox[{"kg", "/", 
+     SuperscriptBox["m", "3"]}]}], TraditionalForm]]],
+ "\n"
+}], "Text",
+ CellChangeTimes->{{3.531319151322444*^9, 3.531319279346784*^9}, {
+  3.531319318868004*^9, 3.5313193512666607`*^9}, {3.5313202562489433`*^9, 
+  3.531320345167857*^9}, {3.53132060388453*^9, 3.5313206129028807`*^9}, {
+  3.531320669117029*^9, 3.531320691571991*^9}, {3.531321285981409*^9, 
+  3.5313212869414062`*^9}, {3.539512747204*^9, 3.5395127659040003`*^9}}],
+
+Cell[BoxData["\[IndentingNewLine]"], "Input",
+ CellChangeTimes->{{3.531320871914857*^9, 3.5313209248799143`*^9}, {
+  3.531321696839278*^9, 3.531321697678973*^9}, {3.531321741205352*^9, 
+  3.531321745565377*^9}, {3.531321794428083*^9, 3.531321794924376*^9}, {
+  3.539494802156*^9, 3.539494863355*^9}, {3.539495416925*^9, 
+  3.539495450443*^9}, {3.539495875468*^9, 3.5394959056210003`*^9}, {
+  3.539495964901*^9, 3.539495990388*^9}, {3.539513394373*^9, 
+  3.539513401664*^9}}],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.531319133978457*^9, 3.5313191387393637`*^9}, {
+  3.531319401194647*^9, 3.531319402938394*^9}, {3.531320618712426*^9, 
+  3.5313206277122726`*^9}, {3.531320709957806*^9, 3.5313207339486217`*^9}, {
+  3.531320795155676*^9, 3.531320857827361*^9}, {3.531320933704587*^9, 
+  3.531320944207605*^9}, {3.53132101390169*^9, 3.531321044255563*^9}, {
+  3.531321705088151*^9, 3.531321730744567*^9}, {3.531321764326311*^9, 
+  3.531321800293056*^9}, {3.539431565516*^9, 3.5394315718599997`*^9}, {
+  3.539494896916*^9, 3.539494897071*^9}, {3.53949494176*^9, 
+  3.5394949507390003`*^9}, {3.539495335692*^9, 3.539495335979*^9}, {
+  3.539495379234*^9, 3.53949539501*^9}, {3.539495481252*^9, 
+  3.539495493808*^9}, {3.539496087851*^9, 3.539496090085*^9}, {
+  3.539513387354*^9, 3.539513407158*^9}}],
+
+Cell["\<\
+Wheel diameter = 10 inches
+Average human mass = 68kg
+Mass of the device = 40kg\
+\>", "Text",
+ CellChangeTimes->{{3.531321276048361*^9, 3.5313213035926857`*^9}, {
+  3.531321450361929*^9, 3.53132146691343*^9}, {3.5394313018570004`*^9, 
+  3.539431302159*^9}, {3.5394950235480003`*^9, 3.539495032168*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"a", "=", "3"}], ";"}], 
+   RowBox[{"(*", 
+    RowBox[{"in", " ", 
+     RowBox[{"m", "/", 
+      SuperscriptBox["sec", "2"]}]}], "*)"}], "\[IndentingNewLine]", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"param", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"A", "\[Rule]", " ", "0.38"}], ",", 
+       RowBox[{"\[Rho]", "\[Rule]", " ", "1.2"}], ",", 
+       RowBox[{"Cd", "\[Rule]", " ", "1.1"}], ",", 
+       RowBox[{"vmax", "\[Rule]", " ", 
+        RowBox[{"40", "*", 
+         RowBox[{"1000", "/", "3600"}]}]}], ",", 
+       RowBox[{"g", "\[Rule]", " ", "9.8"}], ",", 
+       RowBox[{"C", "\[Rule]", " ", "0.04"}], ",", 
+       RowBox[{"m", "\[Rule]", " ", 
+        RowBox[{"68", "+", "40"}]}], ",", 
+       RowBox[{"d", "\[Rule]", 
+        RowBox[{"10", " ", "*", " ", 
+         RowBox[{"25.4", "/", "1000"}]}]}]}], " ", "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Fd", "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"\[Rho]", "*", "A", "*", "Cd", "*", 
+        SuperscriptBox["vel", "2"]}], ")"}], "/", "2"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Fr", "=", 
+     RowBox[{"C", "*", "m", "*", "g"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"F", " ", "=", 
+     RowBox[{"Fr", " ", "+", "Fd"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"\[Tau]req", "=", " ", 
+     RowBox[{"F", "*", 
+      RowBox[{"d", "/", "2"}]}]}], ";"}], 
+   RowBox[{"(*", 
+    RowBox[{"in", " ", "Nm"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"wheelrpm", "=", 
+     RowBox[{
+      RowBox[{"vel", "/", 
+       RowBox[{"(", 
+        RowBox[{"\[Pi]", "*", "d"}], ")"}]}], "*", "60"}]}], " ", ";"}], 
+   RowBox[{"(*", 
+    RowBox[{"rotations", " ", "per", " ", "min"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<starting torque = \>\"", ",", 
+      RowBox[{
+       RowBox[{"\[Tau]", "/.", "param"}], "/.", 
+       RowBox[{"{", 
+        RowBox[{"vel", "\[Rule]", "0"}], "}"}]}], ",", "\"\< Nm\>\""}], "]"}],
+     ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Steady state torque at 40kmph = \>\"", ",", 
+      RowBox[{
+       RowBox[{"\[Tau]", "/.", 
+        RowBox[{"{", 
+         RowBox[{"vel", "\[Rule]", "vmax"}], "}"}]}], "/.", "param"}], ",", 
+      "\"\< Nm\>\""}], "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"\[Tau]req", "/.", "param"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"vel", ",", "0", ",", 
+       RowBox[{"vmax", "/.", "param"}]}], "}"}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Speed(m/sec)\>\"", ",", "\"\<Torque(Nm)\>\""}], "}"}]}], 
+     ",", 
+     RowBox[{
+     "PlotLabel", "\[Rule]", " ", "\"\<Torque required at the wheel\>\""}]}], 
+    "]"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", "*)"}]}]}]], "Input",
+ CellChangeTimes->{{3.531321068196744*^9, 3.531321073472869*^9}, {
+   3.531321235707201*^9, 3.531321262178255*^9}, {3.531321352391006*^9, 
+   3.531321542618557*^9}, {3.531321588801135*^9, 3.531321689288389*^9}, {
+   3.531321818978567*^9, 3.5313219293637867`*^9}, {3.531322008381324*^9, 
+   3.531322085034664*^9}, {3.531322121604021*^9, 3.531322133964603*^9}, {
+   3.539431294709*^9, 3.539431295425*^9}, 3.539431518994*^9, 
+   3.539431653461*^9, {3.539431696427*^9, 3.539431716072*^9}, 
+   3.539431767375*^9, {3.539495299396*^9, 3.539495318399*^9}, {
+   3.539495805457*^9, 3.5394958154709997`*^9}, {3.539495985824*^9, 
+   3.539496041828*^9}, 3.539496072124*^9, {3.5394961082980003`*^9, 
+   3.539496108571*^9}, {3.539496168295*^9, 3.539496226208*^9}, {
+   3.539496264073*^9, 3.539496300941*^9}, {3.53951136154*^9, 
+   3.5395113874300003`*^9}, 3.539511420814*^9, {3.539511460451*^9, 
+   3.539511551625*^9}, {3.539511581999*^9, 3.5395116871879997`*^9}, {
+   3.539511720758*^9, 3.53951173426*^9}, {3.539511767109*^9, 
+   3.539511780566*^9}, {3.539511909551*^9, 3.539511933876*^9}, {
+   3.5395128921870003`*^9, 3.539512892631*^9}, {3.539513284083*^9, 
+   3.539513284691*^9}, {3.539513320809*^9, 3.539513329274*^9}, {
+   3.539513410727*^9, 3.5395134857799997`*^9}, 3.53951425898*^9, {
+   3.548672028661524*^9, 3.548672030619636*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"starting torque = \"\>", "\[InvisibleSpace]", "\[Tau]", 
+   "\[InvisibleSpace]", "\<\" Nm\"\>"}],
+  SequenceForm["starting torque = ", $CellContext`\[Tau], " Nm"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.539513507349*^9, 3.5395284872*^9, 3.5395286974560003`*^9,
+   3.539529129683*^9, 3.539529244929*^9, 3.5395298974230003`*^9, 
+  3.5461521198188*^9, 3.5461535542648*^9, 3.5461535892668*^9, 
+  3.5461536648557997`*^9, 3.5461537997208*^9, 3.5461541794077997`*^9, 
+  3.5486720349878855`*^9, 3.5492417214614024`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Steady state torque at 40kmph = \"\>", "\[InvisibleSpace]", 
+   "\[Tau]", "\[InvisibleSpace]", "\<\" Nm\"\>"}],
+  SequenceForm["Steady state torque at 40kmph = ", $CellContext`\[Tau], " Nm"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.539513507349*^9, 3.5395284872*^9, 3.5395286974560003`*^9,
+   3.539529129683*^9, 3.539529244929*^9, 3.5395298974230003`*^9, 
+  3.5461521198188*^9, 3.5461535542648*^9, 3.5461535892668*^9, 
+  3.5461536648557997`*^9, 3.5461537997208*^9, 3.5461541794077997`*^9, 
+  3.5486720349878855`*^9, 3.5492417214624023`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {}, 
+   {Hue[0.67, 0.6, 0.6], LineBox[CompressedData["
+1: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
+
+     "]]}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->True,
+  AxesLabel->{
+    FormBox["\"Speed(m/sec)\"", TraditionalForm], 
+    FormBox["\"Torque(Nm)\"", TraditionalForm]},
+  AxesOrigin->{0, 5.300000000000001},
+  PlotLabel->FormBox["\"Torque required at the wheel\"", TraditionalForm],
+  PlotRange->NCache[{{0, 
+      Rational[100, 9]}, {5.376672000000002, 9.308968135794407}}, {{
+     0, 11.11111111111111}, {5.376672000000002, 9.308968135794407}}],
+  PlotRangeClipping->True,
+  PlotRangePadding->{
+    Scaled[0.02], 
+    Scaled[0.02]}]], "Output",
+ CellChangeTimes->{3.539513507375*^9, 3.5395284872349997`*^9, 
+  3.5395286974849997`*^9, 3.539529129718*^9, 3.539529244965*^9, 
+  3.53952989746*^9, 3.5461521198468*^9, 3.5461535542998*^9, 
+  3.5461535893058*^9, 3.5461536648918*^9, 3.5461537997578*^9, 
+  3.5461541794418*^9, 3.5486720354519124`*^9, 3.54924172193943*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"p", "=", "800"}], ";"}], 
+   RowBox[{"(*", 
+    RowBox[{"in", " ", "watts"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "after", " ", "transmission", " ", "efficiecy", " ", "and", " ", "motor", 
+     " ", "efficiency"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"p", "=", 
+     RowBox[{"p", "*", "0.75", "*", "0.75"}]}], ";"}], "\[IndentingNewLine]", 
+   
+   RowBox[{"\[Tau]motor", "=", 
+    RowBox[{"rpm", "*", "2", 
+     RowBox[{"\[Pi]", "/", "60", " ", 
+      RowBox[{"(*", 
+       RowBox[{
+       "max", " ", "torque", " ", "the", " ", "motor", " ", "is", " ", 
+        "capable", " ", "of", " ", "delivering"}], "*)"}]}]}]}]}]}]], "Input",\
+
+ CellChangeTimes->{{3.531322954864111*^9, 3.5313230585780087`*^9}, {
+   3.531323107961507*^9, 3.531323128883917*^9}, {3.531323160980597*^9, 
+   3.5313232092120132`*^9}, 3.539431519005*^9}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"\[Pi]", " ", "rpm"}], "30"]], "Output",
+ CellChangeTimes->{3.53132303170872*^9, 3.531323131796948*^9, 
+  3.531323209956272*^9, 3.5461521198887997`*^9, 3.5461535543227997`*^9, 
+  3.5461535893308*^9, 3.5461536649178*^9, 3.5461537997878*^9, 
+  3.5461541794667997`*^9, 3.5486720354769135`*^9, 3.5492417219994335`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{"x", "=", "10"}]}]], "Input",
+ CellChangeTimes->{{3.5395127970179996`*^9, 3.5395128031070004`*^9}}],
+
+Cell[BoxData["10"], "Output",
+ CellChangeTimes->{3.539512804586*^9, 3.5461521199178*^9, 3.5461535543428*^9, 
+  3.5461535893508*^9, 3.5461536649348*^9, 3.5461537998157997`*^9, 
+  3.5461541794858*^9, 3.548672035496915*^9, 3.549241722017434*^9}]
+}, Open  ]]
+},
+WindowSize->{1366, 706},
+WindowMargins->{{-8, Automatic}, {-8, Automatic}},
+Magnification->1.1999999284744263`,
+FrontEndVersion->"8.0 for Microsoft Windows (64-bit) (February 23, 2011)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 835, 19, 114, "Input"],
+Cell[1395, 41, 1553, 36, 174, "Input"],
+Cell[2951, 79, 2031, 47, 134, "Input"],
+Cell[4985, 128, 1211, 33, 201, "Text"],
+Cell[6199, 163, 474, 7, 54, "Input"],
+Cell[6676, 172, 826, 12, 33, "Input"],
+Cell[7505, 186, 311, 7, 72, "Text"],
+Cell[CellGroupData[{
+Cell[7841, 197, 4369, 107, 302, "Input"],
+Cell[CellGroupData[{
+Cell[12235, 308, 572, 10, 26, "Print"],
+Cell[12810, 320, 600, 10, 26, "Print"]
+}, Open  ]],
+Cell[13425, 333, 4221, 76, 280, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17683, 414, 958, 25, 114, "Input"],
+Cell[18644, 441, 352, 6, 48, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19033, 452, 156, 3, 54, "Input"],
+Cell[19192, 457, 242, 3, 34, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
